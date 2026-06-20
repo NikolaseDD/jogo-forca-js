@@ -1,6 +1,7 @@
 const palavra = "CASAS";
 
 let chutes = [];
+let erros = 0;
 
 function atualizarTela() {
 
@@ -20,6 +21,9 @@ function atualizarTela() {
 
     document.getElementById("digitadas").textContent =
         chutes.join(" ");
+
+    document.getElementById("erros").textContent =
+        erros;
 }
 
 function chutar() {
@@ -34,7 +38,13 @@ function chutar() {
         letra &&
         !chutes.includes(letra)
     ) {
+
         chutes.push(letra);
+
+        if (!palavra.includes(letra)) {
+            erros++;
+        }
+
     }
 
     atualizarTela();
