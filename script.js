@@ -1,12 +1,14 @@
 const palavra = "CASAS";
 
-function mostrarPalavra(letraDigitada = "") {
+let chutes = [];
+
+function atualizarTela() {
 
     let resultado = "";
 
     for (let letra of palavra) {
 
-        if (letra === letraDigitada) {
+        if (chutes.includes(letra)) {
             resultado += letra + " ";
         } else {
             resultado += "_ ";
@@ -15,17 +17,29 @@ function mostrarPalavra(letraDigitada = "") {
     }
 
     document.getElementById("palavra").textContent = resultado;
+
+    document.getElementById("digitadas").textContent =
+        chutes.join(" ");
 }
 
 function chutar() {
 
-    const letra =
+    let letra =
         document
         .getElementById("letra")
         .value
         .toUpperCase();
 
-    mostrarPalavra(letra);
+    if (
+        letra &&
+        !chutes.includes(letra)
+    ) {
+        chutes.push(letra);
+    }
+
+    atualizarTela();
+
+    document.getElementById("letra").value = "";
 }
 
-mostrarPalavra();
+atualizarTela();
