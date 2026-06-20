@@ -1,9 +1,31 @@
 const palavra = "CASAS";
 
-let exibicao = "";
+function mostrarPalavra(letraDigitada = "") {
 
-for(let i = 0; i < palavra.length; i++){
-    exibicao += "_ ";
+    let resultado = "";
+
+    for (let letra of palavra) {
+
+        if (letra === letraDigitada) {
+            resultado += letra + " ";
+        } else {
+            resultado += "_ ";
+        }
+
+    }
+
+    document.getElementById("palavra").textContent = resultado;
 }
 
-document.getElementById("palavra").textContent = exibicao;
+function chutar() {
+
+    const letra =
+        document
+        .getElementById("letra")
+        .value
+        .toUpperCase();
+
+    mostrarPalavra(letra);
+}
+
+mostrarPalavra();
